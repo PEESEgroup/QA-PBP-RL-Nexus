@@ -35,6 +35,11 @@ The source code is not distributed as a package, therefore, no installation is r
 ```sh
 git@github.com:PEESEgroup/QA-PBP-RL-Nexus.git
 ```
+## Demo
+Detailed examples of how to use our model to generate PBPs using PPO are provided in `demo/PPO_pbp.py.` The Python file contains the base code and basic hyperparameters required to generate new peptides. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. 
+
+Detailed examples of how to use our model to generate PBPs using Quantum Annealing is provided in `demo/qa_pbp_generation.py.` The Python file contains the base code required to generate new peptides. One needs to get access to Dwave hardware via API token in order to utilize the Quantum Annealer. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. 
+
 ## Citation
 
 ```
