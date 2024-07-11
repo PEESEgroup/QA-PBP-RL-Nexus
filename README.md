@@ -8,7 +8,7 @@ This repository contains PPO and Quantum annealing code to generate plastic bind
 
 `sample_data` contains sample data of single body and pairwise energy required to generate peptide for unique backbone
 
-`example`  contains full body code that helps you generate peptide
+`demo`  contains full body code that helps you generate peptide
 
 ## System Requirements
 ### Operating System
