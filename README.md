@@ -33,5 +33,5 @@ The source code is not distributed as a package, therefore, no installation is r
 **Clone the repository:** Clone the repository to a local directory using the following command:
 
 ```sh
-git clone https://github.com/PEESEgroup/DL-PBP-Design.git
+git@github.com:PEESEgroup/QA-PBP-RL-Nexus.git
 ```
