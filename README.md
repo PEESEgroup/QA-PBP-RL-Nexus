@@ -35,3 +35,16 @@ The source code is not distributed as a package, therefore, no installation is r
 ```sh
 git@github.com:PEESEgroup/QA-PBP-RL-Nexus.git
 ```
+## Citation
+
+```
+@article{,
+author = {Jeet Dhoriyani, Michael T. Bergman, Carol K. Hall, and Fengqi You},
+title = {Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence},
+journal = {},
+volume = {},
+number = {},
+pages = {},
+doi = {},
+abstract = {}}
+```
