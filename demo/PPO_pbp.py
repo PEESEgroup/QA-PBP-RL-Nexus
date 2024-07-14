@@ -24,14 +24,13 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 AMINO_ACIDS = {0: 'G', 1: 'I', 2: 'L', 3: 'M', 4: 'F', 5: 'W', 6: 'Y', 7: 'V', 8: 'R', 9: 'K', 10: 'S', 11: 'T', 12: 'N', 13: 'Q', 14: 'H', 15: 'A', 16: 'C', 17: 'D', 18: 'E'}
 
 # Fetch data function
-def fetch_data(data_folder, backbone_index):
-    backbone_folder = os.path.join(data_folder, f"bb{backbone_index}")
-    single_energy_file = os.path.join(backbone_folder, "SingleEnergy_new__updated_numeric.xlsx")
-    pairwise_energy_file = os.path.join(backbone_folder, "PairwiseEnergy_new__updated_numeric.xlsx")
+def fetch_data(data_folder):
+    backbone_folder = os.path.join(data_folder)
+    single_energy_file = os.path.join(backbone_folder, "SingleEnergy_sample.xlsx")
+    pairwise_energy_file = os.path.join(backbone_folder, "PairwiseEnergy_sample.xlsx")
     
     single_energy_values = pd.read_excel(single_energy_file)["Energy"].values
     pairwise_energy_values = pd.read_excel(pairwise_energy_file)["Energy"].values
-    pairwise_energy_values[pairwise_energy_values == 50] = 250
     
     return single_energy_values, pairwise_energy_values
 
@@ -197,46 +196,49 @@ class PPO:
             self.optimizer.step()
 
 # Main training loop
-def train_network(data_folder, backbone_indices, starting_points_file, lr=0.0005, betas=(0.9, 0.999), gamma=0.995, k_epochs=4, eps_clip=0.2, max_episodes=5000, max_timesteps=300, update_timestep=2000, log_interval=10, saved_interval=500):
-    for index in backbone_indices:
-        single_energy_data, pairwise_energy_data = fetch_data(data_folder, index)
-        env = PeptideEnv(single_energy_data, pairwise_energy_data)
-        memory = Memory()
-        ppo = PPO(PolicyNetwork(NUM_AMINO_ACIDS, NUM_AMINO_ACIDS*SEQUENCE_LENGTH, 256, 128), 
-                  ValueNetwork(NUM_AMINO_ACIDS, 256, 128), lr, betas, gamma, k_epochs, eps_clip)
-        ppo.policy = ppo.policy.to(device)
-        ppo.value = ppo.value.to(device)
+def train_network(data_folder, starting_points_file, lr=0.0005, betas=(0.9, 0.999), gamma=0.995, k_epochs=4, eps_clip=0.2, max_episodes=5000, max_timesteps=300, update_timestep=2000, log_interval=10, saved_interval=500):
+    # Ensure lr is a float
+    lr = float(lr)
+    
+    single_energy_data, pairwise_energy_data = fetch_data(data_folder)
+    env = PeptideEnv(single_energy_data, pairwise_energy_data)
+    memory = Memory()
+    ppo = PPO(PolicyNetwork(NUM_AMINO_ACIDS, NUM_AMINO_ACIDS*SEQUENCE_LENGTH, 256, 128), 
+              ValueNetwork(NUM_AMINO_ACIDS, 256, 128), lr, betas, gamma, k_epochs, eps_clip)
+    ppo.policy = ppo.policy.to(device)
+    ppo.value = ppo.value.to(device)
 
-        state_energy_data = []
-        time_step = 0
-        for episode in range(max_episodes):
-            state = env.reset()
-            for t in range(max_timesteps):
-                time_step += 1
-                action, log_prob = ppo.policy.get_action(state)
-                new_state, reward, done = env.step(action)
-                energy = env.calculate_energy(new_state)
-                memory.states.append(state)
-                memory.actions.append(action)
-                memory.logprobs.append(log_prob)
-                memory.rewards.append(reward)
-                memory.is_terminals.append(done)
-                state = new_state
-                if time_step % update_timestep == 0:
-                    ppo.update(memory)
-                    memory.clear_memory()
-                    time_step = 0
-            if episode % log_interval == 0:
-                print(f'Episode {episode}\tLast reward: {reward}\tAverage reward: {np.mean(memory.rewards[-log_interval:])}')
-                print(f'State: {new_state}\tEnergy: {energy}')
-            if episode != 0 and episode % saved_interval == 0:
-                torch.save(ppo.policy.state_dict(), f'./PPO_Policy_{index}.pth')
-            state_energy_data.append({'episode': episode, 'state': new_state, 'energy': energy})
-        df = pd.DataFrame(state_energy_data)
-        df.to_csv(f'work_random_PE_{index}.csv', index=False)
+    state_energy_data = []
+    time_step = 0
+    for episode in range(max_episodes):
+        state = env.reset()
+        for t in range(max_timesteps):
+            time_step += 1
+            action, log_prob = ppo.policy.get_action(state)
+            new_state, reward, done = env.step(action)
+            energy = env.calculate_energy(new_state)
+            memory.states.append(state)
+            memory.actions.append(action)
+            memory.logprobs.append(log_prob)
+            memory.rewards.append(reward)
+            memory.is_terminals.append(done)
+            state = new_state
+            if time_step % update_timestep == 0:
+                ppo.update(memory)
+                memory.clear_memory()
+                time_step = 0
+        if episode % log_interval == 0:
+            print(f'Episode {episode}\tLast reward: {reward}\tAverage reward: {np.mean(memory.rewards[-log_interval:])}')
+            print(f'State: {new_state}\tEnergy: {energy}')
+        if episode != 0 and episode % saved_interval == 0:
+            torch.save(ppo.policy.state_dict(), f'./PPO_Policy.pth')
+        state_energy_data.append({'episode': episode, 'state': new_state, 'energy': energy})
+    df = pd.DataFrame(state_energy_data)
+    df.to_csv('work_random_PE.csv', index=False)
 
 if __name__ == "__main__":
-    data_folder = 'path/to/data/folder'
-    backbone_indices = []
-    starting_points_file = 'path/to/starting_pt_new.csv'
-    train_network(data_folder, backbone_indices, starting_points_file)
+    data_folder = '/Users/jeetdhoriyani/Library/CloudStorage/Box-Box/peptide_workspace/QA-PBP-RL-Nexus/sample_data'
+    starting_points_file = ''
+    train_network(data_folder, starting_points_file)
+
+
