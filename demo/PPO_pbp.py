@@ -234,7 +234,7 @@ def train_network(data_folder, starting_points_file, lr=0.0005, betas=(0.9, 0.99
             torch.save(ppo.policy.state_dict(), f'./PPO_Policy.pth')
         state_energy_data.append({'episode': episode, 'state': new_state, 'energy': energy})
     df = pd.DataFrame(state_energy_data)
-    df.to_csv('work_random_PE.csv', index=False)
+    df.to_csv('sample_PE.csv', index=False)
 
 if __name__ == "__main__":
     data_folder = '/Users/jeetdhoriyani/Library/CloudStorage/Box-Box/peptide_workspace/QA-PBP-RL-Nexus/sample_data'
