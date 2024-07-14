@@ -51,6 +51,8 @@ The PPO models do not require any non-standard hardware and can be run on a typi
 - pandas 2.0.0
 - pytorch 2.0.0
 - numpy 1.24.2
+- dimod 0.10.17
+- dwave-hybrid 0.6.10
 
 ## Installation Guide
 The source code is not distributed as a package, therefore, no installation is required.
