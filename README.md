@@ -2,13 +2,13 @@
 This repository contains PPO and Quantum annealing code to generate plastic binding peptides (PBPs) for Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence
 
 ## Overview
-`RL_PPO_Peptides/` contains code to discover and generate peptides in solution space.
+`RL_PPO_Peptides/` contains code to discover and generate peptides in solution space. 
 
 `QA_peptide_generator/` contains code to generate optimized amino acid sequences for unique backbones
 
-`sample_data` contains sample data of single body and pairwise energy required to generate peptide for unique backbone
+`sample_data` contains sample data of a single body and pairwise energy required to generate peptide for the unique backbone.
 
-`demo`  contains full body code that helps you generate peptide
+`demo` contains a full body code with sample inputs that help you generate peptides via both QA and PPO.
 
 `AllDesigns.xlsx`: contains the best designs for each system conformation for all plastics using either quantum annealing (QA), PepBD, or Proximal Policy Optimization (PPO). There is a separate tab for the plastics polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET). For each system conformation, the best score and the corresponding amino acid sequence are provided. Note that for polyethylene, QA and PPO do not have solutions for all confirmations
 
