@@ -146,7 +146,7 @@ def main(args):
 
         df_solutions.to_pickle(checkpoint_filename)
 
-    file_name = f'aPS_final_solvent_PE_Pen{args.penalty}_Pairwise.csv'
+    file_name = f'sample_PE_Pen{args.penalty}.csv'
     df_solutions.to_csv(file_name, index=False)
 
 if __name__ == "__main__":
