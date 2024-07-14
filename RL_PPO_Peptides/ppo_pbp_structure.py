@@ -233,5 +233,5 @@ def train_network(data_folder, backbone_indices, starting_points_file, lr=0.0005
                 torch.save(ppo.policy.state_dict(), f'./PPO_Policy_{index}.pth')
             state_energy_data.append({'episode': episode, 'state': new_state, 'energy': energy})
         df = pd.DataFrame(state_energy_data)
-        df.to_csv(f'work_random_PE_{index}.csv', index=False)
+        df.to_csv(f'save_PE_{index}.csv', index=False)
 
