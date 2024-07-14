@@ -1,5 +1,5 @@
 # QA-PBP-RL-Nexus
-This repository contains PPO and Quantum annealing code to generate plastic binding peptides (PBPs) for Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence
+This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript: Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence.
 
 ## Overview
 `RL_PPO_Peptides/` contains code to discover and generate peptides in solution space. 
