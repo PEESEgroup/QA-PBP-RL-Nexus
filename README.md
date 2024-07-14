@@ -60,6 +60,10 @@ The source code is not distributed as a package, therefore, no installation is r
 ```sh
 git@github.com:PEESEgroup/QA-PBP-RL-Nexus.git
 ```
+```https
+git clone https://github.com/PEESEgroup/QA-PBP-RL-Nexus.git
+```
+
 ## Demo
 Detailed examples of how to use our model to generate PBPs using PPO are provided in `demo/PPO_pbp.py.` The Python file contains the base code and basic hyperparameters required to train policy for peptide generation, and `demo/ppo_pbp_generation.py` contains code to generate peptides using the learned policy. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. We have provided GPU support using Cuda as well for the code.
 
