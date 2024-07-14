@@ -6,29 +6,33 @@ This repository contains PPO and Quantum annealing code to generate plastic bind
 
 `QA_peptide_generator/` contains code to generate optimized amino acid sequences for unique backbones
 
-`sample_data` contains sample data of a single body and pairwise energy required to generate peptide for the unique backbone.
+`sample_data/` contains sample data of a single body and pairwise energy required to generate peptide for the unique backbone.
 
-`demo` contains a full body code with sample inputs that help you generate peptides via both QA and PPO.
+`demo/` contains a full body code with sample inputs that help you generate peptides via both QA and PPO.
 
-`AllDesigns.xlsx`: contains the best designs for each system conformation for all plastics using either quantum annealing (QA), PepBD, or Proximal Policy Optimization (PPO). There is a separate tab for the plastics polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET). For each system conformation, the best score and the corresponding amino acid sequence are provided. Note that for polyethylene, QA and PPO do not have solutions for all confirmations
+`Peptide design QA + RL/` folder contains the following data to generate and validate different peptides and results claimed in the manuscript. Organization of the folder is explained below:
 
-`AminoAcidFrequencies.xlsx`: contains the amino acid frequencies for QA designs for all four plastics and PepBD designs for polyethylene.
+- `AllDesigns.xlsx`: contains the best designs for each system conformation for all plastics using either quantum annealing (QA), PepBD, or Proximal Policy Optimization (PPO). There is a separate tab for the plastics polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET). For each system conformation, the best score and the corresponding amino acid sequence are provided. Note that for polyethylene, QA and PPO do not have solutions for all confirmations
+	
+- `AminoAcidFrequencies.xlsx`: contains the amino acid frequencies for QA designs for all four plastics and PepBD designs for polyethylene.
+	
+- `Example_PPO_Score_Trajectories`: provides two examples of the evolution of the peptide score over the course of PPO
+	
+- `MD_Data.xlsx`: provides the adsorption enthalpy (dH) and adsorption free energy (dG) for peptides, with values calculated using the MM/GBSA method. Separate tabs are provided for the PE, PP, PS, and PET. Each tab lists results for peptides found by QA, PepBD, PPO, or generation of a random amino acid sequence. Each entry lists the peptide amino acid sequence, the adsorption enthalpy, and adsorption-free energy.
+	
+- `Peptide_Properties.csv`: contains the Camsol solubility score and the net peptide charge for peptides designed by QA, PepBD, and PPO. For QA and PPO designs, the system conformation corresponding to the design is listed.
+	
+- `PottsModel_Energies`: Contains all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET
+	
+- `PPO_All_Sequences_All_Conformations`: Contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best score found by QA
+	
+- `PPO_NumUnique_vs_Score.csv`: Contains the total number of solutions found per system confirmation, as well as the best score found by QA for that confirmation.
+	
+- `PPO_Seq_2_SideChainEnvironment_Analysis`: Contains analysis of the relationship between side chain geometric environment (SideChainEnvironment.csv) and the most frequent amino acid found in the environment (SequenceAnalysis.csv). 
 
-`Example_PPO_Score_Trajectories`: provides two examples of the evolution of the peptide score over the course of PPO
+- `SequenceAnalysis.csv`: For each system conformation, list the best score found by PPO, the number of solutions found, and the most common amino acid at each of the 12 residues in the peptide
 
-`MD_Data.xlsx`: provides the adsorption enthalpy (dH) and adsorption free energy (dG) for peptides, with values calculated using the MM/GBSA method. Separate tabs are provided for the PE, PP, PS, and PET. Each tab lists results for peptides found by QA, PepBD, PPO, or generation of a random amino acid sequence. Each entry lists the peptide amino acid sequence, the adsorption enthalpy, and adsorption-free energy.
-
-`Peptide_Properties.csv`: contains the Camsol solubility score and the net peptide charge for peptides designed by QA, PepBD, and PPO. For QA and PPO designs, the system conformation corresponding to the design is listed.
-
-`PottsModel_Energies`: Contains all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET
-
-`PPO_All_Sequences_All_Conformations`: Contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best score found by QA
-
-`PPO_NumUnique_vs_Score.csv`: Contains the total number of solutions found per system confirmation, as well as the best score found by QA for that confirmation.
-
-`PPO_Seq_2_SideChainEnvironment_Analysis`: Contains analysis of the relationship between side chain geometric environment (SideChainEnvironment.csv) and the most frequent amino acid found in the environment (SequenceAnalysis.csv). 
-	`SequenceAnalysis.csv`: For each system conformation, list the best score found by PPO, the number of solutions found, and the most common amino acid at each of the 12 residues in the peptide
-	`SideChainEnvironment.cs`v: for each system conformation, provides the distance between beta carbon and top of surface (COM), angle between alpha carbon - beta carbon vector and surface normal vector (Angle), and solvent accessible surface area (SASA) for each of the 12 residues.
+- `SideChainEnvironment.cs`v: for each system conformation, provides the distance between beta carbon and top of surface (COM), angle between alpha carbon - beta carbon vector and surface normal vector (Angle), and solvent accessible surface area (SASA) for each of the 12 residues.
 
 
 ## System Requirements
