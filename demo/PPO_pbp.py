@@ -237,7 +237,7 @@ def train_network(data_folder, starting_points_file, lr=0.0005, betas=(0.9, 0.99
     df.to_csv('sample_PE.csv', index=False)
 
 if __name__ == "__main__":
-    data_folder = '/Users/jeetdhoriyani/Library/CloudStorage/Box-Box/peptide_workspace/QA-PBP-RL-Nexus/sample_data'
+    data_folder = 'sample/data'
     starting_points_file = ''
     train_network(data_folder, starting_points_file)
 
