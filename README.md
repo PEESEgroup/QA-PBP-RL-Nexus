@@ -71,9 +71,11 @@ Detailed examples of how to use our model to generate PBPs using PPO are provide
 Detailed examples of how to use our model to generate PBPs using Quantum Annealing is provided in `demo/qa_pbp_generation.py.` The Python file contains the base code required to generate new peptides. One needs to get access to Dwave hardware via API token in order to utilize the Quantum Annealer. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. 
 
 ## Instructions for Use
-To reproduce the results in our paper, please refer to the `.py` files in the `demo/` directory and follow the instructions for the packages and systems specification.
+To reproduce the results presented in our paper, please follow these steps:
+1.  Navigate to the demo/ directory and examine the readme section and provided `.py` files with sample inputs.
+2.  Ensure that your environment meets the package and system specifications outlined in the instructions provided within the repository.
 
-Please note that due to the stochastic nature of the computational models, it is less likely to generate exactly identical peptides in multiple runs, but the same distributions of peptide properties (total energy, distribution of the amino acid) in the paper are expected to be observed with the same design parameters. 
+Note: Due to the stochastic nature of the computational models, you may not generate identical peptides in multiple runs. However, you can expect to observe the same distributions of peptide properties (such as total energy and amino acid distribution) as reported in the paper, provided the same design parameters are used. 
 ## Citation
 
 ```
