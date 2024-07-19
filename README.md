@@ -44,7 +44,7 @@ The PPO models do not require any non-standard hardware and can be run on a typi
 
 - Apple M1 Pro
 - 16GB of RAM
-- macOS Sonora
+- macOS Sonoma
 
 ### Package Requirements
 - python 3.7
