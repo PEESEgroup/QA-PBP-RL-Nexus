@@ -59,10 +59,7 @@ The source code is not distributed as a package, therefore, no installation is r
 
 **Clone the repository:** Clone the repository to a local directory using the following command:
 
-`ssh`
-```ssh
-git@github.com:PEESEgroup/QA-PBP-RL-Nexus.git
-```
+
 `https`
 ```https
 git clone https://github.com/PEESEgroup/QA-PBP-RL-Nexus.git
@@ -76,7 +73,7 @@ Detailed examples of how to use our model to generate PBPs using Quantum Anneali
 ## Instructions for Use
 To reproduce the results in our paper, please refer to the `.py` files in the `demo/` directory and follow the instructions for the packages and systems specification.
 
-Please note that due to the stochastic nature of the computational models, it is impossible to generate exactly identical peptides in multiple runs, but the same distributions of peptide properties (total energy, distribution of the amino acid) in the paper are expected to be observed with the same design parameters. 
+Please note that due to the stochastic nature of the computational models, it is less likely to generate exactly identical peptides in multiple runs, but the same distributions of peptide properties (total energy, distribution of the amino acid) in the paper are expected to be observed with the same design parameters. 
 ## Citation
 
 ```
