@@ -37,10 +37,12 @@ This repository contains code and data to generate and validate plastic binding 
 
 ## System Requirements
 ### Operating System
-This repository has been developed and tested on macOS, ensuring full compatibility with this operating system. However, the provided scripts are designed to be platform-independent and should work seamlessly on other versions of Windows and macOS.
+This repository has been developed and tested on macOS, ensuring full compatibility with this operating system. However, the provided scripts are designed to be platform-independent and should work seamlessly on other versions of macOS and Windows.
 
 ### Hardware Requirements
-The PPO models do not require any non-standard hardware and can be run on a typical computer. The code also has provided the option to use GPU via pytorch library such that one utilizes speedup in the RL process. Quantum Annealing is performed on the Dwave quantum computer, and it requires an API token from Dwave to successfully run the QA part of the code. The code has been tested on a system with the following specifications: 
+The PPO models do not require any non-standard hardware and can be run on a typical computer. The code also provides the option to utilize a GPU via the PyTorch library for speedup in the reinforcement learning process. Quantum Annealing is performed on the D-Wave quantum computer. An API token from D-Wave is required to successfully run the QA part of the code.
+
+The code has been tested on a system with the following specifications: 
 
 - Apple M1 Pro
 - 16GB of RAM
