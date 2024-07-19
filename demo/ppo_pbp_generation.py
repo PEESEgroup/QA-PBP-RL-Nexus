@@ -57,8 +57,8 @@ def generate_multiple_peptides(policy_path, num_steps, num_peptides, output_file
         print(peptide_str)
 
 if __name__ == "__main__":
-    policy_path = 'path/to/PPO_Policy.pth'
-    num_steps = 5000
-    num_peptides = 100
+    policy_path = 'demo/sample_data/PPO_Policy.pth'
+    num_steps = 50
+    num_peptides = 10
     output_file = 'generated_peptides.csv'
     generate_multiple_peptides(policy_path, num_steps, num_peptides, output_file)

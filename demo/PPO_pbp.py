@@ -34,16 +34,6 @@ def fetch_data(data_folder):
     
     return single_energy_values, pairwise_energy_values
 
-# Load starting points function
-def load_starting_points(filename, index):
-    df = pd.read_csv(filename)
-    df_filtered = df[df['Backbone'] == index]
-    if df_filtered.empty:
-        print(f"No starting points found for backbone: {index}")
-        return []
-    starting_points = df_filtered['Solution'].apply(lambda seq: [list(AMINO_ACIDS.values()).index(aa) for aa in seq]).values.tolist()
-    return starting_points
-
 # Calculate total energy function
 def calculate_total_energy(solution, single_energy_values, pairwise_energy_values):
     solution = np.array(solution, dtype=int)
@@ -196,7 +186,7 @@ class PPO:
             self.optimizer.step()
 
 # Main training loop
-def train_network(data_folder, starting_points_file, lr=0.0005, betas=(0.9, 0.999), gamma=0.995, k_epochs=4, eps_clip=0.2, max_episodes=5000, max_timesteps=300, update_timestep=2000, log_interval=10, saved_interval=500):
+def train_network(data_folder, lr=0.0005, betas=(0.9, 0.999), gamma=0.995, k_epochs=4, eps_clip=0.2, max_episodes=5000, max_timesteps=300, update_timestep=2000, log_interval=10, saved_interval=500):
     # Ensure lr is a float
     lr = float(lr)
     
@@ -233,12 +223,10 @@ def train_network(data_folder, starting_points_file, lr=0.0005, betas=(0.9, 0.99
         if episode != 0 and episode % saved_interval == 0:
             torch.save(ppo.policy.state_dict(), f'./PPO_Policy.pth')
         state_energy_data.append({'episode': episode, 'state': new_state, 'energy': energy})
-    df = pd.DataFrame(state_energy_data)
-    df.to_csv('sample_PE.csv', index=False)
+
 
 if __name__ == "__main__":
-    data_folder = 'sample/data'
-    starting_points_file = ''
-    train_network(data_folder, starting_points_file)
+    data_folder = 'demo/sample_data'
+    train_network(data_folder)
 
 
