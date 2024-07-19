@@ -1,0 +1,1 @@
+`QA_peptide_generator/qa_pbp_generation_structure.py`: This repository contains a Python script to solve Quadratic Unconstrained Binary Optimization (QUBO) problems for energy optimization using a hybrid quantum-classical approach. The solution leverages the KerberosSampler from D-Wave's hybrid solver.
