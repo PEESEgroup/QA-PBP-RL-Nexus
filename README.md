@@ -1,5 +1,6 @@
 # QA-PBP-RL-Nexus
-This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript: Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence.
+This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript: "Developing Peptide-Based Strategies for Microplastic Pollution via a Nexus of Biophysical Modeling, Quantum Computing, and Artificial Intelligence."
+
 
 ## Overview
 `RL_PPO_Peptides/` contains code to discover and generate peptides in solution space. 
@@ -26,12 +27,11 @@ This repository contains code and data to generate and validate plastic binding 
 	
 - `Peptide Design QA+RL/PPO_NumUnique_vs_Score.csv`: contains the total number of solutions found per system conformation, as well as the best score found by QA for that conformation.
 	
-- `PPO_Seq_2_SideChainEnvironment_Analysis`: Contains analysis of the relationship between side chain geometric environment (SideChainEnvironment.csv) and the most frequent amino acid found in the environment (SequenceAnalysis.csv). 
+- `PPO_Seq_2_SideChainEnvironment_Analysis`: contains analysis of the relationship between side chain geometric environment (SideChainEnvironment.csv) and the most frequent amino acid found in the environment (SequenceAnalysis.csv).
 
-- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SequenceAnalysis.csv`: For each system conformation, list the best score found by PPO, the number of solutions found, and the most common amino acid at each of the 12 residues in the peptide
+- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SequenceAnalysis.csv`: for each system conformation, lists the best score found by PPO, the number of solutions found, and the most common amino acid at each of the 12 residues in the peptide.
 
-- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SideChainEnvironment.csv`: for each system conformation, provides the distance between beta carbon and top of surface (COM), angle between alpha carbon - beta carbon vector and surface normal vector (Angle), and solvent accessible surface area (SASA) for each of the 12 residues.
-
+- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SideChainEnvironment.csv`: for each system conformation, provides the distance between the beta carbon and the top of the surface (COM), the angle between the alpha carbon-beta carbon vector and the surface normal vector (Angle), and the solvent-accessible surface area (SASA) for each of the 12 residues.
 
 ## System Requirements
 ### Operating System
