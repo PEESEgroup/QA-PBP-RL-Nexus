@@ -66,9 +66,9 @@ git clone https://github.com/PEESEgroup/QA-PBP-RL-Nexus.git
 ```
 
 ## Demo
-Detailed examples of how to use our model to generate PBPs using PPO are provided in `demo/PPO_pbp.py.` The Python file contains the base code and basic hyperparameters required to train policy for peptide generation, and `demo/ppo_pbp_generation.py` contains code to generate peptides using the learned policy. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. We have provided GPU support using Cuda as well for the code.
+Detailed examples of how to use our model to generate PBPs using Proximal Policy Optimization (PPO) are provided in `demo/PPO_pbp.py`; This Python file contains the base code and basic hyperparameters required to train the policy for peptide generation. Additionally, `demo/ppo_pbp_generation.py` contains the code to generate peptides using the learned policy. GPU support using CUDA is provided to enhance performance, and we have attempted compatibility with PyTorch for efficient GPU utilization.
 
-Detailed examples of how to use our model to generate PBPs using Quantum Annealing is provided in `demo/qa_pbp_generation.py.` The Python file contains the base code required to generate new peptides. One needs to get access to Dwave hardware via API token in order to utilize the Quantum Annealer. Code is structured in a way that one can generate peptides for multiple backbones using a single run. Code also provides various windows to store metadata as a `.pkl` file, which is helpful for restarting the computational job. 
+Detailed examples of how to use our model to generate PBPs using Quantum Annealing are provided in `demo/qa_pbp_generation.py`. This Python file contains the base code required to generate new peptides. Access to D-Wave hardware via an API token is necessary to utilize the Quantum Annealer. For demo purposes, we have used a basic sampler to replicate the workflow.
 
 ## Instructions for Use
 To reproduce the results presented in our paper, please follow these steps:
