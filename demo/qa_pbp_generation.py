@@ -2,30 +2,26 @@ import os
 import pandas as pd
 import numpy as np
 from itertools import combinations
-from tqdm import tqdm
 import dimod
-from hybrid.reference.kerberos import KerberosSampler
-import argparse
-import sys
 
-def fetch_data(backbone_index, pairwise_factor, data_directory):
+
+
+def fetch_data(data_directory, pairwise_factor=1.0):
     """
     Load energy values from Excel files, apply transformation and scaling.
 
     Args:
-        backbone_index (int): Index of the backbone to process.
-        pairwise_factor (float): Scaling factor for pairwise energies.
         data_directory (str): Base directory containing energy files.
+        pairwise_factor (float): Scaling factor for pairwise energies.
 
     Returns:
         tuple: Tuple containing arrays of single and pairwise energy values.
     """
-    single_energy_file = os.path.join(data_directory, f"bb{backbone_index}", "Single_energy_files.xlsx")
-    pairwise_energy_file = os.path.join(data_directory, f"bb{backbone_index}", "PairwiseEnergy_energy_files.xlsx")
+    single_energy_file = os.path.join(data_directory, "SingleEnergy_sample.xlsx")
+    pairwise_energy_file = os.path.join(data_directory, "PairwiseEnergy_sample.xlsx")
 
     single_energy_values = pd.read_excel(single_energy_file)["Energy"].values
     pairwise_energy_values = pd.read_excel(pairwise_energy_file)["Energy"].values * pairwise_factor
-
 
     return single_energy_values, pairwise_energy_values
 
@@ -73,6 +69,7 @@ def generate_qubo(single_energy, pairwise_energy, penalty, num_positions=12, num
 
     # Convert to dictionary form
     qubo_problem = {(i, j): qubo_matrix[i, j] for i in range(qubo_size) for j in range(qubo_size) if qubo_matrix[i, j] != 0}
+    print("QUBO problem generated.")
     return qubo_problem
 
 def solve_qubo_with_hybrid(qubo_problem):
@@ -86,76 +83,50 @@ def solve_qubo_with_hybrid(qubo_problem):
         dict: Optimal sample from the solution set.
     """
     bqm = dimod.BinaryQuadraticModel.from_qubo(qubo_problem)
-    sampler = KerberosSampler()
+    sampler = dimod.RandomSampler()
     sampleset = sampler.sample(bqm)
     sample = sampleset.first.sample
     return sample
 
-def decode_solutions(samples, num_positions=12, num_amino_acids=19):
+def decode_solutions(sample, num_positions=12, num_amino_acids=19):
     """
     Decode samples into human-readable solutions.
 
     Args:
-        samples (list): List of sample solutions from the QUBO solver.
+        sample (list): Sample solution from the QUBO solver.
         num_positions (int): Number of positions (default: 12).
         num_amino_acids (int): Number of amino acids (default: 19).
 
     Returns:
-        list: List of decoded solutions.
+        list: Decoded solution.
     """
-    solutions = []
-    for sample in samples:
-        solution = np.zeros(num_positions)
-        for i in range(num_positions):
-            for j in range(num_amino_acids):
-                qubo_index = i * num_amino_acids + j
-                if sample[qubo_index] == 1:
-                    solution[i] = j
-        solutions.append(solution)
-    return solutions
+    solution = np.zeros(num_positions)
+    for i in range(num_positions):
+        for j in range(num_amino_acids):
+            qubo_index = i * num_amino_acids + j
+            if sample[qubo_index] == 1:
+                solution[i] = j
+    return solution
 
-def main(args):
+def main():
     """
     Main function to process data, solve QUBO problems, and save results.
-
-    Args:
-        args (argparse.Namespace): Command line arguments.
     """
-    data_directory = args.data_directory
-    backbones = os.listdir(data_directory)
-    backbone_indices = [int(bb.split('bb')[-1]) for bb in backbones if 'bb' in bb]
-    backbone_indices.sort()
+    data_directory = "demo/sample_data"
+    pairwise_factor = 1.0
+    penalty = 10.0
 
-    df_solutions = pd.DataFrame(columns=['Backbone', 'Solution'])
-    checkpoint_filename = f'checkpoint_file{args.pairwise_factor}_Pen{args.penalty}.pkl'
+    single_energy_values, pairwise_energy_values = fetch_data(data_directory, pairwise_factor)
+    qubo_problem = generate_qubo(single_energy_values, pairwise_energy_values, penalty)
 
-    # Check for existing data to resume
-    if os.path.exists(checkpoint_filename) and args.start_from_backbone == 0:
-        df_solutions = pd.read_pickle(checkpoint_filename)
-        last_processed_backbone = df_solutions['Backbone'].iloc[-1]
-        args.start_from_backbone = backbone_indices.index(last_processed_backbone) + 1
+    df_solutions = pd.DataFrame(columns=['Solution'])
+    sample = solve_qubo_with_hybrid(qubo_problem)
+    decoded_solution = decode_solutions(sample)
+    df_solutions = pd.concat([df_solutions, pd.DataFrame({'Solution': [decoded_solution]})], ignore_index=True)
 
-    for i in tqdm(backbone_indices[args.start_from_backbone:], desc="Processing Backbones"):
-        single_energy_values_i, pairwise_energy_values_i = fetch_data(i, args.pairwise_factor, data_directory)
-        qubo_problem_i = generate_qubo(single_energy_values_i, pairwise_energy_values_i, args.penalty)
-
-        for repeat in range(args.num_repeats):
-            sample = solve_qubo_with_hybrid(qubo_problem_i)
-            d1 = decode_solutions([sample])
-            df_solutions = pd.concat([df_solutions, pd.DataFrame({'Backbone': [i], 'Solution': [d1]})], ignore_index=True)
-
-        df_solutions.to_pickle(checkpoint_filename)
-
-    file_name = f'sample_PE_Pen{args.penalty}.csv'
+    file_name = 'sample_peptide_10.csv'
     df_solutions.to_csv(file_name, index=False)
+    print(f"Results saved to {file_name}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Solve QUBO problems for protein structure prediction.")
-    parser.add_argument("--data-directory", type=str, required=True, help="Directory containing the energy Excel files.")
-    parser.add_argument("--pairwise-factor", type=float, required=True, help="Factor to scale pairwise energy values.")
-    parser.add_argument("--penalty", type=float, required=True, help="Penalty value to enforce constraints.")
-    parser.add_argument("--num-repeats", type=int, default=1, help="Number of times to repeat the solution attempt for each backbone.")
-    parser.add_argument("--start-from-backbone", type=int, default=0, help="Backbone index to start processing from.")
-
-    args = parser.parse_args()
-    main(args)
+    main()

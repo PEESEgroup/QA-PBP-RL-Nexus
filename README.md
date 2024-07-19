@@ -47,11 +47,11 @@ The PPO models do not require any non-standard hardware and can be run on a typi
 - macOS Sonoma
 
 ### Package Requirements
-- python 3.7
+- python 3.9.7
 - pandas 2.0.0
 - pytorch 2.0.0
 - numpy 1.24.2
-- dimod 0.10.17
+- dimod 0.10.15
 - dwave-hybrid 0.6.10
 
 ## Installation Guide
