@@ -53,6 +53,8 @@ The code has been tested on a system with the following specifications:
 - numpy 1.24.2
 - dimod 0.10.15
 - dwave-hybrid 0.6.10
+- tqdm 4.64.1
+- openpyxl 3.1.2
 
 ## Installation Guide
 The source code is not distributed as a package, therefore, no installation is required.
