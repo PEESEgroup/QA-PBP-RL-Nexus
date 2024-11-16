@@ -15,23 +15,7 @@ This repository contains code and data to generate and validate plastic binding 
 
 - `Peptide Design QA+RL Data Folder.zip/PPO_All_Sequences_All_Conformations`: contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best scores found by QA.
 
-- `Peptide Design QA+RL/AllDesigns.xlsx`: contains the best designs for each system conformation for all plastics using either quantum annealing (QA), PepBD, or Proximal Policy Optimization (PPO). There is a separate tab for the plastics polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET). For each system conformation, the best score and the corresponding amino acid sequence are provided. Note that for polyethylene, QA and PPO do not have solutions for all conformations.
-  
-- `Peptide Design QA+RL/AminoAcidFrequencies.xlsx`: contains the amino acid frequencies for QA designs for all four plastics and PepBD designs for polyethylene.
-	
-- `Peptide Design QA+RL/Example_PPO_Score_Trajectories`:provides two examples of the evolution of the peptide score over the course of PPO.
-	
-- `Peptide Design QA+RL/MD_Data.xlsx`: provides the adsorption enthalpy (dH) and adsorption free energy (dG) for peptides, with values calculated using the MM/GBSA method. Separate tabs are provided for PE, PP, PS, and PET. Each tab lists results for peptides found by QA, PepBD, PPO, or generation of a random amino acid sequence. Each entry lists the peptide amino acid sequence, the adsorption enthalpy, and adsorption-free energy.
-	
-- `Peptide Design QA+RL/Peptide_Properties.csv`: contains the Camsol solubility score and the net peptide charge for peptides designed by QA, PepBD, and PPO. For QA and PPO designs, the system conformation corresponding to the design is listed.
-	
-- `Peptide Design QA+RL/PPO_NumUnique_vs_Score.csv`: contains the total number of solutions found per system conformation, as well as the best score found by QA for that conformation.
-	
-- `PPO_Seq_2_SideChainEnvironment_Analysis`: contains analysis of the relationship between side chain geometric environment (SideChainEnvironment.csv) and the most frequent amino acid found in the environment (SequenceAnalysis.csv).
-
-- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SequenceAnalysis.csv`: for each system conformation, lists the best score found by PPO, the number of solutions found, and the most common amino acid at each of the 12 residues in the peptide.
-
-- `Peptide Design QA+RL/PPO_Seq_2_SideChainEnvironment_Analysis/SideChainEnvironment.csv`: for each system conformation, provides the distance between the beta carbon and the top of the surface (COM), the angle between the alpha carbon-beta carbon vector and the surface normal vector (Angle), and the solvent-accessible surface area (SASA) for each of the 12 residues.
+- `Peptide Design QA+RL Data Folder.zip/Peptide Design with QA+RL PNAS Nexus SI Data File.xlsx`: contains all essential data supporting the SI files. The overview sheet provides a summary of the contents and explains the purpose of each subsequent sheet.
 
 ## System Requirements
 ### Operating System
