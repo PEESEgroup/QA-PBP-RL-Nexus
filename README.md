@@ -67,7 +67,7 @@ Note: Due to the stochastic nature of the computational models, you may not gene
 ```
 @article{,
 author = {Jeet Dhoriyani, Michael T. Bergman, Carol K. Hall, and Fengqi You},
-title = {Developing peptide-based strategies for microplastic pollution via a nexus of biophysical modeling, quantum computing, and artificial intelligence},
+title = {Integrating biophysical modeling, quantum computing, and AI to discover plastic-binding peptides that combat microplastic pollution},
 journal = {},
 volume = {},
 number = {},
