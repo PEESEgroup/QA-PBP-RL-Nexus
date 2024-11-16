@@ -3,13 +3,13 @@ This repository contains code and data to generate and validate plastic binding 
 
 
 ## Overview
-`RL_PPO_Peptides/` contains code to discover and generate peptides in solution space. 
+`RL_PPO_Peptides/` contains code to run PPO to discover high affinity peptides for a system conformation and associated Potts model.  
 
-`QA_peptide_generator/` contains code to generate optimized amino acid sequences for unique backbones.
+`QA_peptide_generator/` contains code to run QA to discover high affinity peptides for a system conformation and associated Potts model. 
 
-`demo/` contains full-body code and sample data with sample inputs that help you generate peptides via both QA and PPO.
+`demo/` contains code, example inputs, and example outputs for peptide discovery with QA and PPO.
 
-`Peptide Design QA+RL Data Folder.zip/` folder contains the following data to generate and validate different peptides and results claimed in the manuscript. The organization of the folder is explained below:
+`Peptide Design QA+RL Data Folder.zip/` contains the following data to generate and validate different peptides and results claimed in the manuscript. The organization of the folder is explained below:
 
 - `Peptide Design QA+RL Data Folder.zip/PottsModel_Energies`: contains all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET.
 
