@@ -1,21 +1,20 @@
 # QA-PBP-RL-Nexus
 This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript: "Developing Peptide-Based Strategies for Microplastic Pollution via a Nexus of Biophysical Modeling, Quantum Computing, and Artificial Intelligence."
 
-
 ## Overview
-`RL_PPO_Peptides/` contains code to run PPO to discover high affinity peptides for a system conformation and associated Potts model.  
+`RL_PPO_Peptides/` contains code to run PPO to discover plastic-binding peptides for a system conformation and associated Potts model.  
 
-`QA_peptide_generator/` contains code to run QA to discover high affinity peptides for a system conformation and associated Potts model. 
+`QA_peptide_generator/` contains code to run QA to discover plastic-binding peptides for a system conformation and associated Potts model. 
 
 `demo/` contains code, example inputs, and example outputs for peptide discovery with QA and PPO.
 
-`Data Folder/` contains the following data to generate and validate different peptides and results claimed in the manuscript. The organization of the folder is explained below:
+`Data Folder/` contains the following data described in the manuscript:
 
-- `Data Folder/PottsModel_Energies`: contains data file with all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET.
+- `Data Folder/PottsModel_Energies` contains one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for each system conformations (termed a "bb" for backbone) for polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET).
 
-- `Data Folder/PPO_All_Sequences_All_Conformations`: contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb{number}_designs.csv". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best scores found by QA.
+- `Data Folder/PPO_All_Sequences_All_Conformations` contains PPO solutions for all system conformations. Results are only for polyethylene, and the system conformation numbering is consistent with the directory `PottsModel_Energies/PE` (e.g., bb1 is the same system in these two directories) 
 
-- `Data Folder/Peptide Design with QA+RL PNAS Nexus SI Data File.xlsx`: contains all essential data supporting the SI files. The overview sheet provides a summary of the contents and explains the purpose of each subsequent sheet.
+- `Data Folder/Peptide Design with QA+RL PNAS Nexus SI Data File.xlsx` contains all raw data for the manuscript. The overview sheet summarizes the contents. 
 
 ## System Requirements
 ### Operating System
