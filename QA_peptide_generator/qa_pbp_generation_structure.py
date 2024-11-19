@@ -7,6 +7,11 @@ import dimod
 from hybrid.reference.kerberos import KerberosSampler
 import argparse
 import sys
+import dwave.cloud as dc
+import os
+
+# Set the API token environment variable
+# os.environ['DWAVE_API_TOKEN'] = 'Enter your API token here'
 
 def fetch_data(backbone_index, pairwise_factor, data_directory):
     """
