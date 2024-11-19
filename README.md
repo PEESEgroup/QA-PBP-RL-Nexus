@@ -11,9 +11,9 @@ This repository contains code and data to generate and validate plastic binding 
 
 `Data Folder/` contains the following data to generate and validate different peptides and results claimed in the manuscript. The organization of the folder is explained below:
 
-- `Data Folder/PottsModel_Energies`: contains zip file with all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET.
+- `Data Folder/PottsModel_Energies`: contains data file with all one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for all system conformations (or "bb"s) for PE, PP, PS, and PET.
 
-- `Data Folder/PPO_All_Sequences_All_Conformations`: contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best scores found by QA.
+- `Data Folder/PPO_All_Sequences_All_Conformations`: contains all solutions found by PPO for all sampled system conformations. The results for each conformation are in a separate folder named "bb{number}_designs.csv". As described in the manuscript, a sampled amino acid sequence is only considered a solution if its corresponding score is within 5 of the best scores found by QA.
 
 - `Data Folder/Peptide Design with QA+RL PNAS Nexus SI Data File.xlsx`: contains all essential data supporting the SI files. The overview sheet provides a summary of the contents and explains the purpose of each subsequent sheet.
 
