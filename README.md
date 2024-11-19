@@ -1,14 +1,14 @@
 # QA-PBP-RL-Nexus
-This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript: "Developing Peptide-Based Strategies for Microplastic Pollution via a Nexus of Biophysical Modeling, Quantum Computing, and Artificial Intelligence."
+This repository contains code and data to generate and validate plastic binding peptides (PBPs) for the manuscript cited below.
 
 ## Overview
-`RL_PPO_Peptides/` contains code to run PPO to discover plastic-binding peptides for a system conformation and associated Potts model.  
+`RL_PPO_Peptides/` contains code to run PPO to discover plastic-binding peptides for a given system conformation and associated Potts model.  
 
 `QA_peptide_generator/` contains code to run QA to discover plastic-binding peptides for a system conformation and associated Potts model. 
 
 `demo/` contains code, example inputs, and example outputs for peptide discovery with QA and PPO.
 
-`Data Folder/` contains the following data described in the manuscript:
+`Data Folder/` contains the following data used in the manuscript:
 
 - `Data Folder/PottsModel_Energies` contains one-body energies (SingleEnergy.txt) and two-body energies (Pairwise.txt) for each system conformations (termed a "bb" for backbone) for polyethylene (PE), polypropylene (PP), polystyrene (PS), and polyethylene terephthalate (PET).
 
