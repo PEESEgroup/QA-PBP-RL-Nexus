@@ -6,7 +6,7 @@ This repository contains code and data to generate and validate plastic binding 
 
 `QA_peptide_generator/` contains code to run QA to discover plastic-binding peptides for a system conformation and associated Potts model. 
 
-`demo/` contains code, example inputs, and example outputs for peptide discovery with QA and PPO.
+`demo/` contains code and example inputs for peptide discovery with QA and PPO.
 
 `Data Folder/` contains the following data used in the manuscript:
 
