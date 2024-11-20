@@ -1,5 +1,5 @@
-- `demo/sample_data/PPO_Policy.pth`: This files contantais example of learned policy using `demo/PPO_pbp.py` 
-- `demo/sample_data/PairwiseEnergy_sample.xlsx`: This file contains sample pairwise energy for given backbone arrangment to derive new generated peptides.
-- `demo/sample_data/PairwiseEnergy.txt`: This file contains sample pairwise energy in txt form.
-- `demo/sample_data/SingleEnergy_sample.xlsx` : : This file contains sample single energy for given backbone arrangment to derive new generated peptides.
-- `demo/sample_data/SingleEnergy.txt`: This file contains sample single energy in txt form.
+  - `demo/sample_data/PPO_Policy.pth` is an example policy learned using demo/PPO_pbp.py
+  - `demo/sample_data/PairwiseEnergy_sample.xlsx` is an example pairwise energies file in .xlsx format
+  - `demo/sample_data/PairwiseEnergy.txt` is an example pairwise energies file in .txt format
+  - `demo/sample_data/SingleEnergy_sample.xlsx` is an example single body energy file in .xlsx format
+  - `demo/sample_data/SingleEnergy.txt` is an example single body energy file in .txt format
